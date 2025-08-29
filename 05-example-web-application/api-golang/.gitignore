@@ -1,0 +1,3 @@
+# Go module cache
+/go-workspace
+/go-workspace/pkg/
