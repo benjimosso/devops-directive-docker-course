@@ -3,14 +3,20 @@ FROM node:14
 # Create and change to the app directory
 WORKDIR /usr/src/app
 
+ENV NODE_ENV=production
+
 # Copy application dependency manifests
 COPY package*.json ./
 
 # Install production dependencies
-RUN npm install 
+RUN --mount=type=cache,target=/usr/src/app/.npm \
+    npm set cache /usr/src/app/.npm && \
+    npm ci --only=production
+
+USER node
 
 # Copy the rest of the application code
-COPY ./src .
+COPY --chown=node:node ./src .
 
 # Expose the application port
 EXPOSE 3000
