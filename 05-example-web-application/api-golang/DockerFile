@@ -9,7 +9,7 @@ RUN go mod download
 COPY . .
 
 RUN go build \
-    -ldflags="-linkmode external -extldflags '-static'" \
+    -ldflags="-linkmode external -extldflags -static" \
     -tags netgo \
     -o api-golang
 
