@@ -20,4 +20,4 @@ COPY --from=build /app/api-golang api-golang
 
 EXPOSE 8080
 
-CMD [ "./api-golang" ]
+CMD [ "/api-golang" ]
